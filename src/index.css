@@ -3,7 +3,7 @@
 /* Tema: no Tailwind v4, tudo que fica em @theme vira utilitário.
    --color-electric  ->  bg-electric, text-electric, border-electric...
    --font-display    ->  font-display */
-@theme {
+@theme{
   --color-void: #05070d;
   --color-graphite: #0d1117;
   --color-panel: #121826;
