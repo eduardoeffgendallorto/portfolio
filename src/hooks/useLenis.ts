@@ -6,13 +6,12 @@ export function useLenis(enabled: boolean) {
   useEffect(() => {
     if (!enabled) return
 
-    const lenis = new Lenis({ anchors: true })
+    // offset negativo: a rolagem para um pouco antes da seção,
+    // para o título não ficar escondido embaixo da Navbar fixa
+    const lenis = new Lenis({ anchors: { offset: -72 } })
 
-    // 1) Cada rolagem do Lenis avisa o ScrollTrigger.
     lenis.on('scroll', ScrollTrigger.update)
 
-    // 2) O ticker do GSAP passa a comandar o Lenis (um único loop).
-    //    O GSAP conta em segundos, o Lenis em milissegundos.
     const tick = (time: number) => lenis.raf(time * 1000)
     gsap.ticker.add(tick)
     gsap.ticker.lagSmoothing(0)
