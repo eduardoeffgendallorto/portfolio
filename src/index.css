@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Tema: no Tailwind v4, tudo que fica em @theme vira utilitário.
+   --color-electric  ->  bg-electric, text-electric, border-electric...
+   --font-display    ->  font-display */
+@theme {
+  --color-void: #05070d;
+  --color-graphite: #0d1117;
+  --color-panel: #121826;
+  --color-line: #1f2a3d;
+  --color-deep: #0a1a3a;
+  --color-electric: #2f6bff;
+  --color-cyan: #22d3ee;
+  --color-mist: #e8eefc;
+  --color-muted: #8a97b2;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-void);
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-display);
+    background-color: var(--color-void);
+    color: var(--color-mist);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-electric);
+    color: white;
+  }
+
+  /* Foco visível para navegação por teclado */
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 4px;
+  }
+}
+
+/* Grade técnica do fundo, esmaecendo nas bordas */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, rgb(47 107 255 / 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(47 107 255 / 0.09) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 72%);
+}
+
+/* Composição 3D feita só com CSS: camadas empilhadas em profundidade (eixo Z) */
+.depth-stage {
+  perspective: 1200px;
+}
+
+.depth-scene {
+  position: absolute;
+  inset: 12%;
+  transform-style: preserve-3d;
+  transform: rotateX(58deg) rotateZ(-35deg);
+}
+
+.depth-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.25rem;
+  border: 1px solid rgb(34 211 238 / 0.3);
+  background: linear-gradient(
+    135deg,
+    rgb(47 107 255 / 0.14),
+    rgb(34 211 238 / 0.03)
+  );
+}
+
+.depth-layer:nth-child(1) {
+  transform: translateZ(0);
+  border-color: rgb(47 107 255 / 0.55);
+}
+.depth-layer:nth-child(2) {
+  transform: translateZ(40px);
+}
+.depth-layer:nth-child(3) {
+  transform: translateZ(80px);
+}
+.depth-layer:nth-child(4) {
+  transform: translateZ(120px);
+  border-color: var(--color-cyan);
+  background: rgb(34 211 238 / 0.08);
+}
+
+/* Respeita quem pede menos movimento no sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
