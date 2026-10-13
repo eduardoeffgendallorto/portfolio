@@ -19,7 +19,7 @@ export default function Button({
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-3 rounded-full px-6 py-3 text-sm font-medium transition duration-300 hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${variants[variant]}`}
+      className={`group inline-flex items-center gap-3 rounded-full px-6 py-3 text-sm font-medium transition-[background-color,color,border-color,translate] duration-300 hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${variants[variant]}`}
     >
       {children}
       <span
